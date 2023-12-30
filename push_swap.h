@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:12:11 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/30 16:37:33 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/30 17:46:20 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ typedef struct s_vars
 
 int	*ft_swap(int *tab, int size, char c);
 int	*ft_ss(int *tab_a, int *tab_b, int size, char s);
+void ft_pa(int *tab_a, int *tab_b, int size);
 
 #endif

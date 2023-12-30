@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/30 16:41:30 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/30 18:18:48 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,36 @@
 // pa (push a) : Takes the first element at the top of b and puts it on a.
 // Does nothing if b is empty.
 
-int *pa(int *tab_a, int *tab_b, int size, char a)
+void ft_pa(int *tab_a, int *tab_b, int size)
 {
+	int	i;
 	
-	ft_printf("p%c\n", a);
+	i = size;
+	if (size >= 2)
+	{
+		while (i > 0)
+		{
+			tab_a[i] = tab_a[i - 1];
+			i--;
+		}
+		tab_a[0] = tab_b[0];
+	}
+	ft_printf("pa\n");
 }
 
 int	main(void)
 {
-	int	tab_a[] = {2, 9, 1, 8};
-	int	tab_b[] = {3, 5, 8, 9};
+	int	tab_a[] = {3, 1, 2, 6};
+	int	tab_b[] = {9, 5, 8, 4};
 	int	size;
 	int	i;
-	int	j;
 
 	size = 4;
 	i = 0;
-	j = 0;
-	ft_ss(tab_a, tab_b, size, 's');
-	while (i < 4)
+	ft_pa(tab_a, tab_b, size);
+	while (i <= size)
 	{
 		ft_printf("%d\n", tab_a[i]);
-		i++;
-	}
-	ft_printf("\n");
-	i = 0;
-	while (i < 4)
-	{
-		ft_printf("%d\n", tab_b[i]);
 		i++;
 	}
 	return (0);
