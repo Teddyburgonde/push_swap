@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:28:34 by tebandam          #+#    #+#              #
-#    Updated: 2023/11/10 11:16:39 by tebandam         ###   ########.fr        #
+#    Updated: 2023/12/31 15:29:38 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,12 @@ all: $(NAME)
 $(NAME) : $(OBJS)
 	$(ARRC) $(NAME) $(OBJS)
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 clean: 
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean $(NAME)
 

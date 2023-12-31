@@ -20,6 +20,7 @@ typedef struct s_list {
 	struct	s_list	*next;
 	struct	s_list	*prev;
 }	t_list;
+
 size_t					ft_strlen(const char *s);
 void					*ft_memset(void *s, int c, size_t n);
 void					*ft_memcpy(void *dest, const void *src, size_t n);

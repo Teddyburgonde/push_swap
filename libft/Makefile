@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 13:05:47 by tebandam          #+#    #+#              #
-#    Updated: 2023/12/23 15:08:55 by tebandam         ###   ########.fr        #
+#    Updated: 2023/12/31 15:30:02 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,16 @@ $(NAME) : $(OBJS)
 	$(ARRC) $(NAME) $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -Iincludes $< -o $@ 
+	@$(CC) $(CFLAGS) -c -Iincludes $< -o $@ 
 
 clean: 
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+	@$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
 	gcc -nostartfiles -shared -o libft.so $(OBJS)
 
 re: fclean $(NAME)
