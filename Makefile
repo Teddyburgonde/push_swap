@@ -1,8 +1,6 @@
 NAME = push_swap
 
 SRCS = ft_printf/ft_printf.c \
-	ft_swap.c \
-	ft_ss.c \
 	main.c
 
 OBJS=$(SRCS:.c=.o)
