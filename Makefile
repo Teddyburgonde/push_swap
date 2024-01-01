@@ -3,6 +3,7 @@ NAME = push_swap
 SRCS = ft_printf/ft_printf.c \
 	ft_print_list.c \
 	ft_free_list.c \
+	ft_swap_stack.c \
 	main.c
 
 OBJS=$(SRCS:.c=.o)
