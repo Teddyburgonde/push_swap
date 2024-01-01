@@ -4,6 +4,7 @@ SRCS = ft_printf/ft_printf.c \
 	ft_print_list.c \
 	ft_free_list.c \
 	ft_swap_stack.c \
+	ft_push.c \
 	main.c
 
 OBJS=$(SRCS:.c=.o)

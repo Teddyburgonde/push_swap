@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/01 14:52:28 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/01 15:48:59 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ int	main()
 	ft_lstadd_back(&b, node1b);
 	ft_lstadd_back(&b, node2b);
 	ft_lstadd_back(&b, node3b);
-
-	//ft_swap_ss(&a, &b, 's');
+	ft_push(&a, &b, 'a');
+	ft_printf("La liste a: \n");
 	ft_print_list(a);
 	ft_printf("\n");
-	//ft_print_list(b);
+	ft_printf("La liste b: \n");
+	ft_print_list(b);
+	
 	ft_free_list(a);
+	ft_free_list(b);
 	a = NULL;
+	b = NULL;
 }
