@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/01 14:08:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/01 14:52:28 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,39 @@
 int	main()
 {
 	t_list *a;
+	t_list *b;
 	t_list *node1;
 	t_list *node2;
 	t_list *node3;
+	
+	t_list *node1b;
+	t_list *node2b;
+	t_list *node3b;
 
 	a = NULL;
+	b = NULL;
 
 	node1 = ft_lstnew(10);
 	node2 = ft_lstnew(20);
 	node3 = ft_lstnew(50);
 
+	node1b = ft_lstnew(60);
+	node2b = ft_lstnew(70);
+	node3b = ft_lstnew(80);
+
+
 	ft_lstadd_back(&a, node1);
 	ft_lstadd_back(&a, node2);
 	ft_lstadd_back(&a, node3);
-	
-	// before
-	ft_printf("Before:\n");
+
+	ft_lstadd_back(&b, node1b);
+	ft_lstadd_back(&b, node2b);
+	ft_lstadd_back(&b, node3b);
+
+	//ft_swap_ss(&a, &b, 's');
 	ft_print_list(a);
-	
-	//after 
-	ft_printf("After\n");
-	ft_sawp_stack(&a, 'a');
-	ft_print_list(a);
+	ft_printf("\n");
+	//ft_print_list(b);
 	ft_free_list(a);
 	a = NULL;
 }
