@@ -6,13 +6,21 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/01 17:28:03 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/02 08:17:26 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libftprintf.h"
 #include "./libft/includes/libft.h"
 #include "./push_swap.h"
+
+// rr : ra et rb en même temps.
+// rra (reverse rotate a) : Décale d’une position vers le bas tous les élements de
+// la pile a. Le dernier élément devient le premier.
+// rrb (reverse rotate b) : Décale d’une position vers le bas tous les élements de
+// la pile b. Le dernier élément devient le premier.
+// rrr : rra et rrb en même temps.
+
 
 void	ft_rotate(t_list **stack, char c)
 {
