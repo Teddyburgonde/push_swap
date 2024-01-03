@@ -6,6 +6,7 @@ SRCS = ft_printf/ft_printf.c \
 	ft_swap_stack.c \
 	ft_push.c \
 	ft_rotate.c \
+	ft_reverse_rotate.c \
 	main.c
 
 OBJS=$(SRCS:.c=.o)
