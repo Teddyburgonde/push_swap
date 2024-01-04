@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/03 17:20:17 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/04 10:04:15 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,53 +55,46 @@ int	ft_atoi_modif(const char *nptr)
 	return (a * sign);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_list	*a;
-	t_list	*node;
-	char	**cut_argv;
-	int		i;
-	int		j;
-	int		value;
+    t_list  *a;
+    t_list  *node;
+    char    **cut_argv;
+    int     i;
+    int     j;
+    int     value;
 
-	a = NULL;
-	i = 1;
-	j = 0;
+    a = NULL;
+    i = 1;
 	if (1 == argc || (2 == argc && !argv[1][0]))
 	{
 		ft_putstr_fd("Error\n", 2);
         exit(EXIT_FAILURE);
 	}
-	else if (2 == argc)
-	{
-		cut_argv = ft_split(argv[1], ' ');
-		while (cut_argv[i - 1])
-		{
-			value = ft_atoi_modif(cut_argv[i - 1]);
-			node = ft_lstnew(value);
-			ft_lstadd_back(&a, node);
-			i++;
-		}
-		while (cut_argv[j])
-		{
-			free(cut_argv[j]);
-			j++;
-		}
-		free(cut_argv);
-		argv = ft_split(argv[1], ' ');
-	}
-	else
-	{
-		while (i < argc)
-		{
-			value = ft_atoi_modif(argv[i]);
-			node = ft_lstnew(value);
-			ft_lstadd_back(&a, node);
-			i++;
-		}
-	}
-	ft_print_list(a);
-	
-	ft_free_list(a);
-	a = NULL;
+    while (i < argc)
+    {
+        cut_argv = ft_split(argv[i], ' ');
+    	j = 0;
+        while (cut_argv[j])
+        {
+            value = ft_atoi_modif(cut_argv[j]);
+            node = ft_lstnew(value);
+            ft_lstadd_back(&a, node);
+            j++;
+        }
+        while (cut_argv[j])
+        {
+            free(cut_argv[j]);
+            j++;
+        }
+        free(cut_argv);
+        i++;
+    }
+
+    ft_print_list(a);
+    ft_free_list(a);
+    a = NULL;
+
+    return 0;
 }
+
