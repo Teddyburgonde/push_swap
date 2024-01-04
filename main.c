@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/04 10:04:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/04 11:09:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int main(int argc, char **argv)
 {
     t_list  *a;
     t_list  *node;
+	t_list	*current;
+	t_list	*nextNode;
     char    **cut_argv;
     int     i;
     int     j;
@@ -66,14 +68,14 @@ int main(int argc, char **argv)
 
     a = NULL;
     i = 1;
-	if (1 == argc || (2 == argc && !argv[1][0]))
+	if (1 == argc || (2 >= argc && !argv[1][0]))
 	{
 		ft_putstr_fd("Error\n", 2);
         exit(EXIT_FAILURE);
 	}
     while (i < argc)
     {
-        cut_argv = ft_split(argv[i], ' ');
+    	cut_argv = ft_split(argv[i], ' ');
     	j = 0;
         while (cut_argv[j])
         {
@@ -88,13 +90,26 @@ int main(int argc, char **argv)
             j++;
         }
         free(cut_argv);
-        i++;
+		i++;
     }
-
+	current = a;
+	while (current)
+	{
+    	nextNode = current->next;
+    	while (nextNode)
+    	{
+        	if (current->content == nextNode->content)
+        	{
+            	ft_putstr_fd("Error\n", 2);
+            	exit(EXIT_FAILURE);
+        	}
+        	nextNode = nextNode->next;
+    	}
+    	current = current->next;
+	}
     ft_print_list(a);
     ft_free_list(a);
     a = NULL;
-
     return 0;
 }
 
