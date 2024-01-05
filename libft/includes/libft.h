@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:05:24 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/31 13:58:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:00:52 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_list {
 	int	content;
+	int	rank;
 	struct	s_list	*next;
 	struct	s_list	*prev;
 }	t_list;

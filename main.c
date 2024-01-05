@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/04 11:09:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:54:47 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,46 @@
 #include "./libft/includes/libft.h"
 #include "./push_swap.h"
 
-static int	is_whitespace(char c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
-int	ft_atoi_modif(const char *nptr)
+void	ft_bufferfly(t_list *stack_a, t_list *stack_b, int chunk)
 {
 	int	i;
-	int	a;
-	int	sign;
+	int	tracker;
+	int	number_elements_in_chunk;
+	int	len;
 
-	i = 0;
-	a = 0;
-	sign = 1;
-	while (is_whitespace(nptr[i]))
-		i++;
-	while (nptr[i] == '+' || nptr[i] == '-')
+	len = ft_lstsize(stack_a);
+	number_elements_in_chunk = ft_lstsize(stack_a) / chunk;
+	// tracker la plus grande valeur des elements du premier chunk
+	tracker = number_elements_in_chunk;
+	while (stack_a != NULL)
 	{
-		if (nptr[i + 1] == '+')
-			return (0);
-		if (nptr[i] == '-')
-			sign *= -1;
-		if (nptr[i + 1] == '-')
-			return (0);
-		i++;
+		i = 0;
+		while (i < number_elements_in_chunk && stack_a != NULL)
+		{
+			if (stack_a->rank < tracker)
+			{
+				ft_push(&stack_b, &stack_a, 'b');
+				// permet de rendre l'algorithme optimiser (pivot)
+				// si la valeur que je viens de push
+				// dans la stadck_b est plus grand que le pivot on rotate
+				if (stack_b->rank > (tracker - len / (chunk * 2))) {
+					ft_rotate(&stack_b, 'b');
+				}
+				i++;
+			}
+			else
+				ft_rotate(&stack_a, 'a');
+		}
+		tracker += number_elements_in_chunk;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		a = a * 10 + (nptr[i] - '0');
-		i++;
-	}
-	if (nptr[i] != '\0')
-    {
-        ft_putstr_fd("Error\n", 2);
-        exit(EXIT_FAILURE);
-    }
-	return (a * sign);
 }
+
+
 
 int main(int argc, char **argv)
 {
     t_list  *a;
+	t_list	*b;
     t_list  *node;
 	t_list	*current;
 	t_list	*nextNode;
@@ -67,6 +63,7 @@ int main(int argc, char **argv)
     int     value;
 
     a = NULL;
+	b = NULL;
     i = 1;
 	if (1 == argc || (2 >= argc && !argv[1][0]))
 	{
@@ -107,9 +104,16 @@ int main(int argc, char **argv)
     	}
     	current = current->next;
 	}
-    ft_print_list(a);
+	
+	ft_normalisation(a);
+	ft_bufferfly(a, b, 8);
+    
+	//ft_print_list(a);
+	
     ft_free_list(a);
+	ft_free_list(b);
     a = NULL;
+	b = NULL;
     return 0;
 }
 
