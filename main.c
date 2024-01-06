@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/05 17:54:47 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:54:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,72 @@
 #include "./libft/includes/libft.h"
 #include "./push_swap.h"
 
-void	ft_bufferfly(t_list *stack_a, t_list *stack_b, int chunk)
+void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk)
 {
 	int	i;
 	int	tracker;
 	int	number_elements_in_chunk;
 	int	len;
 
-	len = ft_lstsize(stack_a);
-	number_elements_in_chunk = ft_lstsize(stack_a) / chunk;
-	// tracker la plus grande valeur des elements du premier chunk
+	len = ft_lstsize(*stack_a);
+	number_elements_in_chunk = ft_lstsize(*stack_a) / chunk;
 	tracker = number_elements_in_chunk;
-	while (stack_a != NULL)
+	while (*stack_a != NULL)
 	{
 		i = 0;
-		while (i < number_elements_in_chunk && stack_a != NULL)
+		while (i < number_elements_in_chunk && *stack_a != NULL)
 		{
-			if (stack_a->rank < tracker)
+			if ((*stack_a)->rank < tracker)
 			{
-				ft_push(&stack_b, &stack_a, 'b');
-				// permet de rendre l'algorithme optimiser (pivot)
-				// si la valeur que je viens de push
-				// dans la stadck_b est plus grand que le pivot on rotate
-				if (stack_b->rank > (tracker - len / (chunk * 2))) {
-					ft_rotate(&stack_b, 'b');
-				}
+				ft_push(stack_b, stack_a, 'b');
+				if ((*stack_b)->rank > (tracker - len / (chunk * 2))) 
+					ft_rotate(stack_b, 'b');
 				i++;
 			}
 			else
-				ft_rotate(&stack_a, 'a');
+				ft_rotate(stack_a, 'a');
 		}
 		tracker += number_elements_in_chunk;
 	}
 }
 
+int find_pos_highest_value(t_list *stack_b, int max)
+{
+	t_list	*current;
+	int		highest_value;
+	int		pos;
 
+	pos = 0;
+	highest_value = 0;
+	current = stack_b;
+	while (current && current->rank != max)
+	{
+		pos++;
+		current = current->next;	
+	}
+	return (pos);
+}
+
+void	ft_sort(t_list **stack_a, t_list **stack_b)
+{
+	int	pos;
+	int	max;
+
+	while (*stack_b != NULL)
+	{
+		max = ft_lstsize(*stack_b) - 1;
+		pos = find_pos_highest_value(*stack_b, max);
+		if (pos > ft_lstsize(*stack_b) / 2)
+		{
+			while ((*stack_b)->rank != max)
+				ft_reverse_rotate(stack_b, 'b');
+		}
+		else
+			while ((*stack_b)->rank != max)
+				ft_rotate(stack_b, 'b');
+		ft_push(stack_a, stack_b, 'a');
+	}
+}
 
 int main(int argc, char **argv)
 {
@@ -104,12 +135,10 @@ int main(int argc, char **argv)
     	}
     	current = current->next;
 	}
-	
 	ft_normalisation(a);
-	ft_bufferfly(a, b, 8);
-    
-	//ft_print_list(a);
-	
+	ft_butterfly(&a, &b, 8);
+	ft_sort(&a, &b);
+	//ft_print_list(b);
     ft_free_list(a);
 	ft_free_list(b);
     a = NULL;
