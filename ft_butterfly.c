@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:59:50 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/08 12:00:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:03:28 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk)
 			if ((*stack_a)->rank < tracker)
 			{
 				ft_push(stack_b, stack_a, 'b');
-				if ((*stack_b)->rank > (tracker - len / (chunk * 2))) 
+				if ((*stack_b)->rank > (tracker - len / (chunk * 2)))
 					ft_rotate(stack_b, 'b');
 				i++;
 			}

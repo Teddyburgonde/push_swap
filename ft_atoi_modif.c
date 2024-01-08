@@ -6,18 +6,19 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:32:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/05 13:33:26 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:19:09 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libftprintf.h"
 #include "./libft/includes/libft.h"
 
-void	message_error()
+void	message_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
-    exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
+
 static int	is_whitespace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)

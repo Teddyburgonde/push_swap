@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 08:18:20 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/05 17:57:28 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:03:39 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void	ft_rotate_a_b(t_list **stack_a, t_list **stack_b, char c)
 	ft_rotate(stack_a, c);
 	ft_rotate_no_char(stack_b);
 }
-
