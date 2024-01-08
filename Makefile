@@ -9,6 +9,8 @@ SRCS = ft_printf/ft_printf.c \
 	ft_reverse_rotate.c \
 	ft_atoi_modif.c \
 	ft_normalisation.c \
+	ft_sort.c \
+	ft_butterfly.c \
 	main.c
 
 OBJS=$(SRCS:.c=.o)
