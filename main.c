@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/08 18:52:27 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:23:37 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,38 +65,17 @@ void	check_duplicates(t_list *list)
 	}
 }
 
-void	functions_call(t_list *a, t_list *b)
+void	functions_call_butterfly(t_list *a, t_list *b)
 {
 	check_duplicates(a);
 	ft_normalisation(a);
-	//ft_butterfly(&a, &b, 8);
+	ft_butterfly(&a, &b, 8);
 	ft_sort(&a, &b);
-	ft_free_list(a);
-	ft_free_list(b);
-	a = NULL;
-	b = NULL;
+	//ft_free_list(a);
+	//ft_free_list(b);
+	//a = NULL;
+	//b = NULL;
 }
-
-// void	ft_sort(t_list **stack_a, t_list **stack_b)
-// {
-// 	int	pos;
-// 	int	max;
-
-// 	while (*stack_b != NULL)
-// 	{
-// 		max = ft_lstsize(*stack_b) - 1;
-// 		pos = find_pos_highest_value(*stack_b, max);
-// 		if (pos > ft_lstsize(*stack_b) / 2)
-// 		{
-// 			while ((*stack_b)->rank != max)
-// 				ft_reverse_rotate(stack_b, 'b');
-// 		}
-// 		else
-// 			while ((*stack_b)->rank != max)
-// 				ft_rotate(stack_b, 'b');
-// 		ft_push(stack_a, stack_b, 'a');
-// 	}
-// }
 
 void	ft_sort_two(t_list **stack_a)
 {
@@ -129,31 +108,63 @@ void	ft_sort_three(t_list **stack_a)
 		ft_swap_stack(stack_a, 'a');
 	}
 }
-
-
-static void	sorting_choices(t_list *stack_a, t_list *stack_b, int size)
+t_stack_node	*find_smallest(t_stack_node *stack)
 {
-	(void)stack_b;
+	t_stack_node	*smallest_node;
+	t_stack_node	*head;
+	long			smallest;
+
+	if (!stack)
+		return (NULL);
+	head = stack;
+	smallest = 2147483648;
+	while (head)
+	{
+		if (head->value < smallest)
+		{
+			smallest = head->value;
+			smallest_node = head;
+		}
+		head = head->next;
+	}
+	return (smallest_node);
+}
+
+void	little_sort(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*smallest;
+	t_list	*head_a;
+
+	if (!stack_a || !stack_b)
+		return ;
+	head_a = *stack_a;
+	while (ft_lstsize(head_a) > 3)
+		head_a = head_a->next;
+	smallest = find_smallest(head_a);
+	while (ft_lstsize(stack_a) > 3 && !is_sorted(stack_a))
+	{
+		if ((*stack_a)->next == smallest && *stack_a != find_smallest(stack_a))
+			ft_rotate(stack_a, 'a');
+		else
+		{
+			init_stack_utils_b(a, b);
+			finish_rotation(a, find_smallest(*a), 'a');
+			push_b(b, a);
+		}
+	}
+}
+
+static void	sorting_choices(t_list *stack_a)
+{
+	int	size;
+	
+	size = ft_lstsize(stack_a);
     if (size == 2)
         ft_sort_two(&stack_a);
     else if (size == 3)
         ft_sort_three(&stack_a);
-	/*
-    else if (size == 4)
-        main_sort(stack_a, stack_b, 1, size - 1);
     else if (size == 5)
-        sort_five(stack_a, stack_b);
-    else if (size >= 6 && size <= 100)
-        main_sort(stack_a, stack_b, 3, size - 1);
-    else if (size > 100 && size <= 200)
-        main_sort(stack_a, stack_b, 4, size - 1);
-    else if (size > 200 && size <= 300)
-        main_sort(stack_a, stack_b, 5, size - 1);
-    else if (size > 300 && size <= 400)
-        main_sort(stack_a, stack_b, 6, size - 1);
-    else
-        main_sort(stack_a, stack_b, 8, size - 1);
-	*/
+		ft_sort_for(&stack_a);
 }
 
 
@@ -175,12 +186,21 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		cut_argv = ft_split(argv[i], ' ');
+		if (!cut_argv)
+			return (0);
 		parse_arguments(&a, cut_argv);
 		ft_free_tab_2d(cut_argv);
 		cut_argv = NULL;
 		i++;
 	}
-	//functions_call(a, b);
-	sorting_choices(a, b, 3);
-	return (0);
+	ft_printf("Before sorting:\n");
+	ft_print_list(a);
+	if (ft_lstsize(a) >= 10)
+	{
+    	functions_call_butterfly(a, b);
+	}
+	else
+	{	
+    	sorting_choices(a);
+	}
 }
