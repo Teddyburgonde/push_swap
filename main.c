@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/09 17:23:37 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:26:59 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,10 @@ void	ft_sort_three(t_list **stack_a)
 		ft_swap_stack(stack_a, 'a');
 	}
 }
-t_stack_node	*find_smallest(t_stack_node *stack)
+t_list	*find_smallest(t_list *stack)
 {
-	t_stack_node	*smallest_node;
-	t_stack_node	*head;
+	t_list	*smallest_node;
+	t_list	*head;
 	long			smallest;
 
 	if (!stack)
@@ -120,14 +120,33 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 	smallest = 2147483648;
 	while (head)
 	{
-		if (head->value < smallest)
+		if (head->content < smallest)
 		{
-			smallest = head->value;
+			smallest = head->content;
 			smallest_node = head;
 		}
 		head = head->next;
 	}
 	return (smallest_node);
+}
+
+int	is_sorted(t_list *stack)
+{
+	int				data;
+	t_list	*head;
+
+	if (!stack)
+		return (2);
+	head = stack;
+	data = head->content;
+	while (head->next)
+	{
+		head = head->next;
+		if (head->content < data)
+			return (0);
+		data = head->content;
+	}
+	return (1);
 }
 
 void	little_sort(t_list **stack_a, t_list **stack_b)
@@ -147,6 +166,7 @@ void	little_sort(t_list **stack_a, t_list **stack_b)
 			ft_rotate(stack_a, 'a');
 		else
 		{
+			// a faire demain ! 
 			init_stack_utils_b(a, b);
 			finish_rotation(a, find_smallest(*a), 'a');
 			push_b(b, a);
