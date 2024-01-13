@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:32:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/08 17:19:09 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:30:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static int	is_whitespace(char c)
 	return (0);
 }
 
-int	ft_atoi_modif(const char *nptr)
+int	ft_atol_modif(const char *nptr)
 {
 	int	i;
-	int	a;
+	long	a;
 	int	sign;
 
 	i = 0;
@@ -40,16 +40,18 @@ int	ft_atoi_modif(const char *nptr)
 	while (nptr[i] == '+' || nptr[i] == '-')
 	{
 		if (nptr[i + 1] == '+')
-			return (0);
+			message_error();
 		if (nptr[i] == '-')
 			sign *= -1;
 		if (nptr[i + 1] == '-')
-			return (0);
+			message_error();
 		i++;
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		a = a * 10 + (nptr[i++] - '0');
+	if (a > 2147483647 || a < -2147483648)
+		message_error();
 	if (nptr[i] != '\0')
 		message_error();
-	return (a * sign);
+	return ((int)a * sign);
 }

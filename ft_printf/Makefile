@@ -19,7 +19,7 @@ OBJS=$(SRCS:.c=.o)
 
 RM=rm -f
 
-CC= cc
+CC= clang
 ARRC=ar -rc
 CFLAGS=-Wall -Wextra -Werror -g
 

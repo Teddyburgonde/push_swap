@@ -19,12 +19,12 @@ RM = rm -f
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -I./libft/includes -I./ft_printf/includes -g
+CFLAGS = -Wall -Wextra -Werror -I./libft/includes -I./ft_printf/includes -ggdb3
 
 $(NAME) : $(OBJS)
-	@make -s --directory ./libft
-	@make -s --directory ./ft_printf
-	@$(CC) $(CFLAGS) $(OBJS) ./libft/libft.a ./ft_printf/libftprintf.a -o $@ -s && echo "\033[32;1mSuccessful compilation !\033[0m" || echo "\033[31;1mCompilation failed.\033[0m"
+	@$(MAKE) --directory ./libft
+	@$(MAKE) --directory ./ft_printf
+	@$(CC) $(CFLAGS) $(OBJS) ./libft/libft.a ./ft_printf/libftprintf.a -o $@ && echo "\033[32;1mSuccessful compilation !\033[0m"
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 

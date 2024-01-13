@@ -6,13 +6,14 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/11 18:51:32 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:28:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libftprintf.h"
 #include "./libft/includes/libft.h"
 #include "./push_swap.h"
+
 
 int	is_sorted(t_list *stack)
 {
@@ -33,7 +34,6 @@ int	is_sorted(t_list *stack)
 	return (1);
 }
 
-
 void	parse_arguments(t_list **a, char **cut_argv)
 {
 	t_list	*node;
@@ -43,7 +43,7 @@ void	parse_arguments(t_list **a, char **cut_argv)
 	j = 0;
 	while (cut_argv[j])
 	{
-		value = ft_atoi_modif(cut_argv[j]);
+		value = ft_atol_modif(cut_argv[j]);
 		node = ft_lstnew(value);
 		ft_lstadd_back(a, node);
 		j++;
@@ -167,7 +167,7 @@ void	main_sort(t_list *stack_a, t_list *stack_b, int chunk)
 static void	sorting_choices(t_list *stack_a, t_list *stack_b)
 {
 	int	size;
-	
+
 	size = ft_lstsize(stack_a);
     if (size == 2)
         ft_sort_two(&stack_a);
@@ -177,12 +177,11 @@ static void	sorting_choices(t_list *stack_a, t_list *stack_b)
 		main_sort(stack_a, stack_b, 1);
 	else if (size == 5)
 		ft_sort_five(&stack_a, &stack_b);
-	else
-		main_sort(stack_a, stack_b, 8);
-		
+	else if (size >= 6 && size <= 100)
+		main_sort(stack_a, stack_b, 3);
+	
+	
 }
-
-
 int	main(int argc, char **argv)
 {
 	char	**cut_argv;
@@ -193,7 +192,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	i = 1;
-	if (1 == argc || (2 >= argc && !argv[1][0]))
+	if (1 == argc || (argv[1][0] == 0 && argv[1][1] == 0) || (argv[1][0] == 32 && argv[1][1] == 32) || (argv[1][0] == 32) || (argv[1][0] == 0) || (2 >= argc && !argv[1][0]) || (argv[1][0] == '+' && argv[1][1] == 32))
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
@@ -210,5 +209,45 @@ int	main(int argc, char **argv)
 	}
 	ft_normalisation(a);
     sorting_choices(a, b);
+	ft_free_list(a);
+	ft_free_list(b);
+	//free(cut_argv);
+	a = NULL;
+	b = NULL;
 	//ft_print_list(a);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	char	**cut_argv;
+// 	t_list	*a;
+// 	t_list	*b;
+// 	int		i;
+
+// 	a = NULL;
+// 	b = NULL;
+// 	i = 1;
+// 	if (1 == argc || (argv[1][0] == 0 && argv[1][1] == 0) || (argv[1][0] == 32 && argv[1][1] == 32) || (argv[1][0] == 32) || (argv[1][0] == 0) || (2 >= argc && !argv[1][0]) || (argv[1][0] == '+' && argv[1][1] == 32))
+// 	{
+// 		ft_putstr_fd("Error\n", 2);
+// 		exit(EXIT_FAILURE);
+// 	}
+// 	while (i < argc)
+// 	{
+// 		cut_argv = ft_split(argv[i], ' ');
+// 		if (!cut_argv)
+// 			return (0);
+// 		parse_arguments(&a, cut_argv);
+// 		ft_free_tab_2d(cut_argv);
+// 		cut_argv = NULL;
+// 		i++;
+// 	}
+// 	ft_normalisation(a);
+//     sorting_choices(a, b);
+// 	ft_free_list(a);
+// 	ft_free_list(b);
+// 	//free(cut_argv);
+// 	a = NULL;
+// 	b = NULL;
+// 	//ft_print_list(a);
+// }

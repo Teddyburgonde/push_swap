@@ -32,8 +32,8 @@ OBJS=$(SRCS:.c=.o)
 
 RM=rm -f
 
-CC= gcc
-ARRC=ar -rc
+CC= clang
+ARRC=ar -rcs
 CFLAGS=-Wall -Wextra -Werror -g
 
 ifdef value
