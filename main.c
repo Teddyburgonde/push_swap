@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/13 15:42:59 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/13 17:27:13 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,24 @@ static void	sorting_choices(t_list *stack_a, t_list *stack_b)
 		main_sort(stack_a, stack_b, 8);
 }
 
+static int	parsing_for_error(char **tab)
+{
+	if ((tab[1][0] == '+' && tab[1][1] == 0) ||
+	(tab[1][0] == 0 && tab[1][1] == 0) ||
+	(tab[1][0] == 32 && tab[1][1] == 32) ||
+	(tab[1][0] == 32) || (tab[1][0] == 0) ||
+	(tab[1][0] == '+' && tab[1][1] == 32) ||
+	// dernier test que j'ai fait
+	(tab[1][2] == 0) ||
+	(tab[1][4] == '+') ||
+	(tab[1][0] == '0' && tab[2][0] == '-'))
+	{
+		return (1);
+	}
+	return (0);
+}
+
+
 int	main(int argc, char **argv)
 {
 	char	**cut_argv;
@@ -199,11 +217,12 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	i = 1;
-	if (1 == argc || (argv[1][0] == 0 && argv[1][1] == 0) || (argv[1][0] == 32 && argv[1][1] == 32) || (argv[1][0] == 32) || (argv[1][0] == 0) || (2 >= argc && !argv[1][0]) || (argv[1][0] == '+' && argv[1][1] == 32))
+	if (1 == argc || (2 >= argc && !argv[1][0]) || parsing_for_error(argv) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	i = 1;
 	while (i < argc)
 	{
 		cut_argv = ft_split(argv[i], ' ');
