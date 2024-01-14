@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/13 17:27:13 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/14 14:47:40 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	parse_arguments(t_list **a, char **cut_argv)
 {
 	t_list	*node;
 	int		j;
-	int		value;
+	int	value;
 
 	j = 0;
 	while (cut_argv[j])
@@ -192,20 +192,73 @@ static void	sorting_choices(t_list *stack_a, t_list *stack_b)
 static int	parsing_for_error(char **tab)
 {
 	if ((tab[1][0] == '+' && tab[1][1] == 0) ||
-	(tab[1][0] == 0 && tab[1][1] == 0) ||
+	(tab[1][0] == '-' && tab[1][1] == '0') ||
+	(tab[1][0] == '\0' ) ||
+	//(tab[1][0] == '\0' &&
+	//tab[2][0] == '\0') ||
+	(tab[1][0] == 0 && tab[1][1] == 0) || 
 	(tab[1][0] == 32 && tab[1][1] == 32) ||
-	(tab[1][0] == 32) || (tab[1][0] == 0) ||
 	(tab[1][0] == '+' && tab[1][1] == 32) ||
 	// dernier test que j'ai fait
-	(tab[1][2] == 0) ||
-	(tab[1][4] == '+') ||
-	(tab[1][0] == '0' && tab[2][0] == '-'))
+	(tab[1][0] == 32 && tab[1][1] == 0) ||
+	//ici
+	(tab[1][4] == '+'))
+	//(tab[1][0] == tab[1][1]))
 	{
 		return (1);
 	}
 	return (0);
 }
 
+int	ft_no_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+int	ft_double(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == str[i + 1])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+int	ft_countains_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i + 1] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int is_number_overflow(char *str) 
+{
+    // Convertir la chaîne en long long int
+    long long int value = atoll(str);
+    // Vérifier si la valeur dépasse la limite d'un int 
+    if (value > 2147483647 || value < -2147483648) 
+        return 1; // Dépassement détecté
+    return 0; // Pas de dépassement
+}
 
 int	main(int argc, char **argv)
 {
@@ -217,7 +270,8 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	i = 1;
-	if (1 == argc || (2 >= argc && !argv[1][0]) || parsing_for_error(argv) == 1)
+	if (1 == argc || (2 >= argc && !argv[1][0]) 
+	|| parsing_for_error(argv) == 1 || is_number_overflow(argv[1]) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
@@ -226,7 +280,7 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		cut_argv = ft_split(argv[i], ' ');
-		if (!cut_argv)
+		if (!cut_argv )
 			return (0);
 		parse_arguments(&a, cut_argv);
 		ft_free_tab_2d(cut_argv);
