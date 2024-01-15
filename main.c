@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/15 12:36:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:01:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,25 +188,43 @@ static void	sorting_choices(t_list *stack_a, t_list *stack_b)
 		main_sort(stack_a, stack_b, 8);
 }
 
+
 static int	parsing_for_error(char **tab)
 {
+	
 	int	i;
+	int	j;
 
-	i = 0;
-	while (tab[1][i] != '\0') 
+	j = 0;
+	while (tab[j])
 	{
-        if (tab[1][i] == '+' && tab[1][i + 1] == '\0') 
-            return (1);
-        else if (tab[1][i] == '\0' || (tab[1][i] == 32 && tab[1][i + 1] == 32) 
-		|| (tab[1][i] == '+' && tab[1][i + 1] == 32) 
-		|| (tab[1][i] == 32 && tab[1][i + 1] == 0) 
-		|| (i == 4 && tab[1][i] == '+')
-		|| (tab[1][0] == '0' && tab[1][1] == 0)
-		|| (tab[1][0] == '\0' && tab[2][0] == '\0'))
-        	return 1; 
-        i++;
-    }
+		i = 0;
+		while(tab[j][i])
+		{
+			if 	(!ft_isdigit(tab[j][i]) && tab[j][i] != 32 
+			&& tab[j][i] != '+' && tab[j][i] != '-')
+			{
+				return (1);
+			}
+			i++;
+		}
+		j++;
+	}
 	return (0);
+	// while (tab[1][i] != '\0') 
+	// {
+    //     if (tab[1][i] == '+' && tab[1][i + 1] == '\0') 
+    //         return (1);
+    //     else if (tab[1][i] == '\0' || (tab[1][i] == 32 && tab[1][i + 1] == 32) 
+	// 	|| (tab[1][i] == '+' && tab[1][i + 1] == 32) 
+	// 	|| (tab[1][i] == 32 && tab[1][i + 1] == 0) 
+	// 	|| (i == 4 && tab[1][i] == '+')
+	// 	|| (tab[1][0] == '0' && tab[1][1] == 0)
+	// 	|| (tab[1][0] == '\0' && tab[2][0] == '\0'))
+    //     	return (1); 
+    //     i++;
+    // }
+	// return (0);
 }
 
 int	ft_no_digit(char *str)
@@ -249,14 +267,6 @@ int	ft_countains_space(char *str)
 	return (0);
 }
 
-int is_number_overflow(long long int value) 
-{
-
-    if (value >= 2147483647 || value <= -2147483648) 
-        return 1; // Dépassement détecté
-    return 0; // Pas de dépassement
-}
-
 int	main(int argc, char **argv)
 {
 	char	**cut_argv;
@@ -267,8 +277,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	i = 1;
-	if (1 == argc || (2 >= argc && !argv[1][0]) 
-	|| parsing_for_error(argv) == 1)
+	if (argc == 1 || parsing_for_error(argv))
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
