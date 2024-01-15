@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:32:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/14 14:31:36 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:18:12 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ int	ft_atol_modif(const char *nptr)
 			message_error();
 		if (nptr[i] == '-')
 			sign *= -1;
-		if (nptr[i + 1] == '-')
-			message_error();
+		// if (nptr[i + 1] == '-')
+		// 	message_error();
 		i++;
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		a = a * 10 + (nptr[i++] - '0');
-	// if (a >= -2147483649 && a <= 2147483648)
-	// {
-	// 	message_error();
-	// }
+	if (!(a > -2147483649 && a < 2147483648))
+	{
+		message_error();
+	}
 	if (nptr[i] != '\0')
 		message_error();
 	return ((int)a * sign);
