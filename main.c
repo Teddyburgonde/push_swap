@@ -6,13 +6,26 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/15 19:01:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:25:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libftprintf.h"
 #include "./libft/includes/libft.h"
 #include "./push_swap.h"
+
+void	ft_free_tab_2d(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 int	is_sorted(t_list *stack)
 {
@@ -45,21 +58,11 @@ void	parse_arguments(t_list **a, char **cut_argv)
 		value = ft_atol_modif(cut_argv[j]);
 		node = ft_lstnew(value);
 		ft_lstadd_back(a, node);
+		//cut_argv = NULL;
 		j++;
 	}
-}
-
-void	ft_free_tab_2d(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
+	ft_free_list(*a);
+	*a = NULL;
 }
 
 void	check_duplicates(t_list *list)
@@ -76,6 +79,7 @@ void	check_duplicates(t_list *list)
 			if (current->content == next_node->content)
 			{
 				ft_putstr_fd("Error\n", 2);
+				ft_free_list(list);
 				exit(EXIT_FAILURE);
 			}
 			next_node = next_node->next;
@@ -83,18 +87,6 @@ void	check_duplicates(t_list *list)
 		current = current->next;
 	}
 }
-
-// void	functions_call_butterfly(t_list *a, t_list *b)
-// {
-// 	check_duplicates(a);
-// 	ft_normalisation(a);
-// 	ft_butterfly(&a, &b, 8);
-// 	ft_sort(&a, &b);
-// 	ft_free_list(a);
-// 	ft_free_list(b);
-// 	a = NULL;
-// 	b = NULL;
-// }
 
 void	ft_sort_two(t_list **stack_a)
 {
@@ -189,43 +181,38 @@ static void	sorting_choices(t_list *stack_a, t_list *stack_b)
 }
 
 
-static int	parsing_for_error(char **tab)
+static int	ft_parsing_for_error(char **tab)
 {
 	
 	int	i;
 	int	j;
 
-	j = 0;
+	j = 1;
 	while (tab[j])
 	{
 		i = 0;
 		while(tab[j][i])
 		{
-			if 	(!ft_isdigit(tab[j][i]) && tab[j][i] != 32 
-			&& tab[j][i] != '+' && tab[j][i] != '-')
+			if (tab[j][i] == '+' || tab[j][i] == '-')
+			{
+				if (!ft_isdigit(tab[j][i + 1]))
+					return (1);
+			}
+			if (tab[j][0] == 32 && (tab[j][1] == 32 || tab[j][1] == '\0'))
 			{
 				return (1);
 			}
 			i++;
 		}
+		if (i == 0)
+			return (1);
 		j++;
 	}
 	return (0);
-	// while (tab[1][i] != '\0') 
-	// {
-    //     if (tab[1][i] == '+' && tab[1][i + 1] == '\0') 
-    //         return (1);
-    //     else if (tab[1][i] == '\0' || (tab[1][i] == 32 && tab[1][i + 1] == 32) 
-	// 	|| (tab[1][i] == '+' && tab[1][i + 1] == 32) 
-	// 	|| (tab[1][i] == 32 && tab[1][i + 1] == 0) 
-	// 	|| (i == 4 && tab[1][i] == '+')
-	// 	|| (tab[1][0] == '0' && tab[1][1] == 0)
-	// 	|| (tab[1][0] == '\0' && tab[2][0] == '\0'))
-    //     	return (1); 
-    //     i++;
-    // }
-	// return (0);
 }
+
+// gestion des espaces
+// doublons 
 
 int	ft_no_digit(char *str)
 {
@@ -276,8 +263,8 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	i = 1;
-	if (argc == 1 || parsing_for_error(argv))
+	i = 1; 
+	if (argc == 1 || ft_parsing_for_error(argv) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
@@ -287,13 +274,17 @@ int	main(int argc, char **argv)
 	{
 		cut_argv = ft_split(argv[i], ' ');
 		if (!cut_argv )
+		{
 			return (0);
+		}
 		parse_arguments(&a, cut_argv);
 		ft_free_tab_2d(cut_argv);
 		cut_argv = NULL;
+
 		i++;
 	}
 	ft_normalisation(a);
+	check_duplicates(a);
     sorting_choices(a, b);
 	ft_free_list(a);
 	ft_free_list(b);

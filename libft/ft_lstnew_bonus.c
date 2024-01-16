@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:45:13 by tebandam          #+#    #+#             */
-/*   Updated: 2023/11/09 10:45:16 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:34:10 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_list	*ft_lstnew(int content)
 
 	tmp = (t_list *)malloc(sizeof(t_list));
 	if (!tmp)
+	{
 		return (NULL);
+	}
 	tmp->content = content;
 	tmp->next = NULL;
 	return (tmp);
