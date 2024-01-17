@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:12:11 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/13 15:31:09 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:57:47 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	ft_reverse_rotate_no_char(t_list **stack);
 void	ft_reverse_rotate_a_b(t_list **stack_a, t_list **stack_b, char c);
 void	message_error(void);
 void	ft_normalisation(t_list *a);
-int		ft_atol_modif(const char *nptr);
+int		ft_atol_modif(char *nptr, t_list **stack_a, char **cut_argv);
 void	ft_sort(t_list **stack_a, t_list **stack_b);
 int		find_pos_highest_value(t_list *stack_b, int max);
 void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk);
+void	ft_free_tab_2d(char **tab);
 
 #endif

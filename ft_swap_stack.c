@@ -6,12 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 13:36:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/09 14:40:16 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:38:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libftprintf.h"
 #include "./libft/includes/libft.h"
+#include "push_swap.h"
 
 int	ft_swap_stack(t_list **stack, char c)
 {

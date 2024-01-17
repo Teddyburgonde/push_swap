@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/16 15:25:56 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:00:57 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 void	ft_free_tab_2d(char **tab)
 {
 	int	i;
+
+	if (!tab)
+		return;
 
 	i = 0;
 	while (tab[i])
@@ -55,14 +58,12 @@ void	parse_arguments(t_list **a, char **cut_argv)
 	j = 0;
 	while (cut_argv[j])
 	{
-		value = ft_atol_modif(cut_argv[j]);
+		value = ft_atol_modif(cut_argv[j], a, cut_argv);
 		node = ft_lstnew(value);
 		ft_lstadd_back(a, node);
-		//cut_argv = NULL;
 		j++;
 	}
-	ft_free_list(*a);
-	*a = NULL;
+	//ft_free_list(*a);
 }
 
 void	check_duplicates(t_list *list)
@@ -96,6 +97,7 @@ void	ft_sort_two(t_list **stack_a)
 	if (current->content > current->next->content)
 	{
 		ft_swap_stack(stack_a, 'a');
+		ft_free_list(current);
 	}
 }
 
@@ -103,18 +105,24 @@ void	ft_sort_three(t_list **stack_a)
 {
 	t_list	*current;
 	if (is_sorted(*stack_a))
+	{
 		return ;
+	}
 	current = *stack_a;
 	ft_normalisation(*stack_a);
 	if (current->rank == 1 && current->next->rank == 0)
+	{
 		ft_swap_stack(stack_a, 'a');
+	}
 	else if (current->rank == 2 && current->next->rank == 1)
 	{
 		ft_swap_stack(stack_a, 'a');
-		ft_reverse_rotate(stack_a, 'a');	
+		ft_reverse_rotate(stack_a, 'a');
 	}
 	else if (current->rank == 2 && current->next->rank == 0)
+	{	
 		ft_rotate(stack_a, 'a');
+	}
 	else if (current->rank == 0 && current->next->rank == 2)
 	{
 		ft_swap_stack(stack_a, 'a');
@@ -129,7 +137,8 @@ void ft_sort_five(t_list **stack_a, t_list **stack_b) {
 
     if (is_sorted(*stack_a))
         return;
-    while (i > 3) {
+    while (i > 3) 
+	{
         if ((*stack_a)->rank == 0 || (*stack_a)->rank == 1) {
             ft_push(stack_b, stack_a, 'b');
             i--;
@@ -145,12 +154,16 @@ void ft_sort_five(t_list **stack_a, t_list **stack_b) {
     }
     ft_push(stack_a, stack_b, 'a');
     ft_push(stack_a, stack_b, 'a');
+	ft_free_list(*stack_a);
+	ft_free_list(*stack_b);
 }
 
 void	main_sort(t_list *stack_a, t_list *stack_b, int chunk)
 {
 	if (is_sorted(stack_a))
+	{
 		return ;
+	}
 	ft_butterfly(&stack_a, &stack_b, chunk);
 	ft_sort(&stack_a, &stack_b);
 }
@@ -196,7 +209,9 @@ static int	ft_parsing_for_error(char **tab)
 			if (tab[j][i] == '+' || tab[j][i] == '-')
 			{
 				if (!ft_isdigit(tab[j][i + 1]))
+				{
 					return (1);
+				}			
 			}
 			if (tab[j][0] == 32 && (tab[j][1] == 32 || tab[j][1] == '\0'))
 			{
@@ -227,19 +242,19 @@ int	ft_no_digit(char *str)
 	}
 	return (1);
 }
-int	ft_double(char *str)
-{
-	int i;
+// int	ft_double(char *str)
+// {
+// 	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == str[i + 1])
-			return (1);
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		if (str[i] == str[i + 1])
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 int	ft_countains_space(char *str)
 {
 	int	i;
@@ -273,22 +288,17 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		cut_argv = ft_split(argv[i], ' ');
-		if (!cut_argv )
-		{
-			return (0);
-		}
 		parse_arguments(&a, cut_argv);
 		ft_free_tab_2d(cut_argv);
-		cut_argv = NULL;
-
 		i++;
 	}
 	ft_normalisation(a);
 	check_duplicates(a);
     sorting_choices(a, b);
+	//ft_free_list(a);
 	ft_free_list(a);
 	ft_free_list(b);
-	a = NULL;
-	b = NULL;
+	//a = NULL;
+	//b = NULL;
 	//ft_print_list(a);
 }

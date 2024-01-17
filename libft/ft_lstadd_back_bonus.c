@@ -6,11 +6,12 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:15:49 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/16 14:35:31 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:17:23 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../push_swap.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
@@ -25,4 +26,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	ptr_last_element = ft_lstlast(*lst);
 	ptr_last_element->next = new;
+	//ft_free_list(new);
 }
+

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:45:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/16 14:34:10 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:04:06 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(int content)
 {
 	t_list	*tmp;
 
-	tmp = (t_list *)malloc(sizeof(t_list));
+	tmp = malloc(sizeof(t_list));
 	if (!tmp)
 	{
 		return (NULL);
