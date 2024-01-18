@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:59:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/17 17:00:57 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:28:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	parse_arguments(t_list **a, char **cut_argv)
 		j++;
 	}
 	//ft_free_list(*a);
+    //*a = NULL;
 }
 
 void	check_duplicates(t_list *list)
@@ -75,6 +76,7 @@ void	check_duplicates(t_list *list)
 	while (current)
 	{
 		next_node = current->next;
+		//test ici 
 		while (next_node)
 		{
 			if (current->content == next_node->content)
@@ -97,7 +99,6 @@ void	ft_sort_two(t_list **stack_a)
 	if (current->content > current->next->content)
 	{
 		ft_swap_stack(stack_a, 'a');
-		ft_free_list(current);
 	}
 }
 
@@ -154,33 +155,31 @@ void ft_sort_five(t_list **stack_a, t_list **stack_b) {
     }
     ft_push(stack_a, stack_b, 'a');
     ft_push(stack_a, stack_b, 'a');
-	ft_free_list(*stack_a);
-	ft_free_list(*stack_b);
 }
 
-void	main_sort(t_list *stack_a, t_list *stack_b, int chunk)
+void	main_sort(t_list **stack_a, t_list **stack_b, int chunk)
 {
-	if (is_sorted(stack_a))
+	if (is_sorted(*stack_a))
 	{
 		return ;
 	}
-	ft_butterfly(&stack_a, &stack_b, chunk);
-	ft_sort(&stack_a, &stack_b);
+	ft_butterfly(stack_a, stack_b, chunk);
+	ft_sort(stack_a, stack_b);
 }
 
-static void	sorting_choices(t_list *stack_a, t_list *stack_b)
+static void	sorting_choices(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 
-	size = ft_lstsize(stack_a);
+	size = ft_lstsize(*stack_a);
     if (size == 2)
-        ft_sort_two(&stack_a);
+        ft_sort_two(stack_a);
     else if (size == 3)
-        ft_sort_three(&stack_a);
+        ft_sort_three(stack_a);
     else if (size == 4)
 		main_sort(stack_a, stack_b, 1);
 	else if (size == 5)
-		ft_sort_five(&stack_a, &stack_b);
+		ft_sort_five(stack_a, stack_b);
 	else if (size >= 6 && size <= 100)
 		main_sort(stack_a, stack_b, 3);
 	else if (size > 100 && size <= 200)
@@ -242,19 +241,6 @@ int	ft_no_digit(char *str)
 	}
 	return (1);
 }
-// int	ft_double(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		if (str[i] == str[i + 1])
-// 			return (1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
 int	ft_countains_space(char *str)
 {
 	int	i;
@@ -294,11 +280,10 @@ int	main(int argc, char **argv)
 	}
 	ft_normalisation(a);
 	check_duplicates(a);
-    sorting_choices(a, b);
-	//ft_free_list(a);
+    sorting_choices(&a, &b);
+	//ft_print_list(a);
 	ft_free_list(a);
 	ft_free_list(b);
 	//a = NULL;
 	//b = NULL;
-	//ft_print_list(a);
 }

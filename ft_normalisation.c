@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:08 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/17 15:00:39 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:05:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_normalisation(t_list *a)
 	while (save)
 	{
 		count = 0;
+		
 		while (current)
 		{
 			if (save->content > current->content)
