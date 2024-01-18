@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:13:03 by tebandam          #+#    #+#             */
-/*   Updated: 2023/11/11 16:35:38 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:50:35 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_printf(char *str, ...)
 	print = 0;
 	i = 0;
 	while (str[i])
-	{	
+	{
 		if (str[i] == '%')
 		{
 			print += format(str[i + 1], list);

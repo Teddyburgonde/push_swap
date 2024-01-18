@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:05:24 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 11:56:17 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:49:59 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <unistd.h>
 
 typedef struct s_list {
-	int	content;
-	int	rank;
-	struct	s_list	*next;
-	struct	s_list	*prev;
+	int				content;
+	int				rank;
+	struct s_list	*next;
+	struct s_list	*prev;
 }	t_list;
 
 size_t					ft_strlen(const char *s);

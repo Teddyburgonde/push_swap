@@ -1,7 +1,6 @@
 NAME = push_swap
 
 SRCS = ft_printf/ft_printf.c \
-	ft_print_list.c \
 	ft_free_list.c \
 	ft_swap_stack.c \
 	ft_push.c \
@@ -11,6 +10,8 @@ SRCS = ft_printf/ft_printf.c \
 	ft_normalisation.c \
 	ft_sort.c \
 	ft_butterfly.c \
+	ft_small_sort.c \
+	ft_parsing.c \
 	main.c
 
 OBJS=$(SRCS:.c=.o)

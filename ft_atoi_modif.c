@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:32:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 11:47:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:24:10 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include "./libft/includes/libft.h"
 #include "push_swap.h"
 
-void	message_error(void)
+void	message_error_and_free(t_list **stack_a, char **cut_argv)
 {
+	ft_free_list(*stack_a);
+	ft_free_tab_2d(cut_argv);
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
@@ -27,13 +29,11 @@ static int	is_whitespace(char c)
 	return (0);
 }
 
-#include <stdlib.h>
-
 int	ft_atol_modif(char *nptr, t_list **stack_a, char **cut_argv)
 {
-	int	i;
+	int		i;
 	long	a;
-	int	sign;
+	int		sign;
 
 	i = 0;
 	a = 0;
@@ -43,11 +43,7 @@ int	ft_atol_modif(char *nptr, t_list **stack_a, char **cut_argv)
 	if (nptr[i] == '+' || nptr[i] == '-')
 	{
 		if (nptr[i + 1] == '+')
-		{
-			ft_free_list(*stack_a);
-			ft_free_tab_2d(cut_argv);
-			message_error();
-		}
+			message_error_and_free(stack_a, cut_argv);
 		if (nptr[i] == '-')
 			sign *= -1;
 		i++;
@@ -56,16 +52,8 @@ int	ft_atol_modif(char *nptr, t_list **stack_a, char **cut_argv)
 		a = a * 10 + (nptr[i++] - '0');
 	a *= sign;
 	if (!(a > -2147483649 && a < 2147483648))
-	{
-		ft_free_list(*stack_a);
-		ft_free_tab_2d(cut_argv);
-		message_error();
-	}
+		message_error_and_free(stack_a, cut_argv);
 	if (nptr[i] != '\0')
-	{
-		ft_free_list(*stack_a);
-		ft_free_tab_2d(cut_argv);
-		message_error();
-	}
+		message_error_and_free(stack_a, cut_argv);
 	return (a);
 }

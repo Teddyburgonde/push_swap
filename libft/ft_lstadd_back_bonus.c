@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:15:49 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 13:03:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:47:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	ptr_last_element = ft_lstlast(*lst);
 	ptr_last_element->next = new;
-	//ft_free_list(new);
 }
-
