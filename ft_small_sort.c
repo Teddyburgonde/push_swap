@@ -6,11 +6,10 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:43:41 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 17:33:43 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:48:28 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libft.h"
 #include "./push_swap.h"
 
 void	ft_sort_two(t_list **stack_a)

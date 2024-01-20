@@ -6,11 +6,10 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:08 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 15:42:14 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:06:46 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libft.h"
 #include "push_swap.h"
 
 void	ft_normalisation(t_list *a)

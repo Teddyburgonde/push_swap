@@ -6,12 +6,10 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:32:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 16:24:10 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:07:03 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libftprintf.h"
-#include "./libft/includes/libft.h"
 #include "push_swap.h"
 
 void	message_error_and_free(t_list **stack_a, char **cut_argv)

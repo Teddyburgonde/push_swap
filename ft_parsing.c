@@ -6,11 +6,10 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:03:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 17:39:46 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:48:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libft.h"
 #include "./push_swap.h"
 
 int	ft_parsing_for_error(char **tab)

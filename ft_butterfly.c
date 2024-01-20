@@ -6,11 +6,10 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:59:50 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 15:53:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:06:57 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libft.h"
 #include "./push_swap.h"
 
 void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk)

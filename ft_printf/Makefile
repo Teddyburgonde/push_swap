@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:28:34 by tebandam          #+#    #+#              #
-#    Updated: 2024/01/11 15:21:46 by tebandam         ###   ########.fr        #
+#    Updated: 2024/01/19 11:26:26 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS=-Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	$(ARRC) $(NAME) $(OBJS)
+	@$(ARRC) $(NAME) $(OBJS)
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 clean: 

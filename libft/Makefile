@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 13:05:47 by tebandam          #+#    #+#              #
-#    Updated: 2023/12/31 15:30:02 by tebandam         ###   ########.fr        #
+#    Updated: 2024/01/19 11:26:43 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ endif
 all: $(NAME)
 
 $(NAME) : $(OBJS) 
-	$(ARRC) $(NAME) $(OBJS)
+	@$(ARRC) $(NAME) $(OBJS)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c -Iincludes $< -o $@ 
+	@$(CC) $(CFLAGS) -c -Iincludes $< -o $@
 
 clean: 
 	@$(RM) $(OBJS) $(OBJS_BONUS)

@@ -6,12 +6,30 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:55:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/18 17:26:55 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:04:48 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libft.h"
 #include "./push_swap.h"
+
+int	is_sorted(t_list *stack)
+{
+	int				data;
+	t_list			*head;
+
+	if (!stack)
+		return (2);
+	head = stack;
+	data = head->content;
+	while (head->next)
+	{
+		head = head->next;
+		if (head->content < data)
+			return (0);
+		data = head->content;
+	}
+	return (1);
+}
 
 void	main_sort(t_list **stack_a, t_list **stack_b, int chunk)
 {

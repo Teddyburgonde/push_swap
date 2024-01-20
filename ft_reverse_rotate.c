@@ -6,12 +6,11 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 11:02:09 by tebandam          #+#    #+#             */
-/*   Updated: 2024/01/03 11:06:19 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:06:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libftprintf.h"
-#include "./libft/includes/libft.h"
+#include "push_swap.h"
 
 void	ft_reverse_rotate(t_list **stack, char c)
 {
