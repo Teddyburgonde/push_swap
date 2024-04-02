@@ -35,6 +35,21 @@ https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-t
 Si tu trie et tu vois afficher pa sa sa pb ... ce n'est pas tres visuel ,
 on prefere qu'on nous affiche 1 55 77 88 99
 
+```c
+void	ft_print_list(t_list *list)
+{
+	t_list	*current;
+
+	current = list;
+	while (current)
+	{
+		ft_printf("%d\n", current->content);
+		current = current->next;
+	}
+	
+}
+```
+
 ##  **Normalisation**
 
 - Imaginer que vous avez 100 chiffres a trier , dans ses chiffres il peut avoir 12000 , 5, 77777 etc...
@@ -70,7 +85,8 @@ void	ft_normalisation(t_list *a)
 ## **Algorithme papillion** 
 
 En etat c'est algorithme vous permettra de valider votre projet mais pas à 100 %. 
-Si vous voulez avoir les 100 % aller demander a Mr Ppuivif.
+Si vous voulez avoir les 100 % aller demander a ceinture marron =)
+
 ```c
 void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk)
 {
