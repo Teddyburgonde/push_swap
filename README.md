@@ -41,6 +41,31 @@ on prefere qu'on nous affiche 1 55 77 88 99
 Si on dit a l'ordinateur de trier en etat cela prendrai beaucoup trop de temps...
 C'est pour cela qu'on doit faire une normalisation des valeurs, peut importe le chiffre il deviendra un index (une position dans la pile a trier) et sa sera plus rapide de trier l'index 5 avec index 0.
 
+```c
+void	ft_normalisation(t_list *a)
+{
+	t_list	*save;
+	t_list	*current;
+	int		count;
+
+	count = 0;
+	save = a;
+	current = a;
+	while (save)
+	{
+		count = 0;
+		while (current)
+		{
+			if (save->content > current->content)
+				count++;
+			current = current->next;
+		}
+		save->rank = count;
+		save = save->next;
+		current = a;
+	}
+}
+```
 
 ## **Algorithme papillion** 
 
