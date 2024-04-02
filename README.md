@@ -8,7 +8,7 @@ En construction ! Derniere mise a jour mardi 02/04/2024 23h14
 
 - Faire les fonctions pa, pb ,sa ...
 
-## **ETAPE 2**
+## **Etape 2**
 
 ## **Pour le trie par 3 :** 
 
@@ -23,7 +23,7 @@ En construction ! Derniere mise a jour mardi 02/04/2024 23h14
 ![Screenshot from 2024-03-26 11-04-55](https://github.com/Teddyburgonde/push_swap/assets/93845046/e501f928-36e5-42bf-9f66-8e77bc69dc58)
 
 
-## **fonction qui permet d'imprimer les valeurs**
+## **Etape 3 : Fonction qui permet d'imprimer les valeurs**
 
 Si tu trie et tu vois afficher pa sa sa pb ... ce n'est pas tres visuel ,
 on prefere qu'on nous affiche 1 55 77 88 99
@@ -43,7 +43,7 @@ void	ft_print_list(t_list *list)
 	
 }
 ```
-## **Etape 3 : La Normalisation**
+## **Etape 4 : La Normalisation**
 
 - Imaginer que vous avez 100 chiffres a trier , dans ses chiffres il peut avoir 12000 , 5, 77777 etc...
 Si on dit a l'ordinateur de trier en etat cela prendrai beaucoup trop de temps...
@@ -75,7 +75,7 @@ void	ft_normalisation(t_list *a)
 }
 ```
 
-## **Etape 4 : Algorithme papillion** 
+## **Etape 5 : Algorithme papillion** 
 
 En etat c'est algorithme vous permettra de valider votre projet mais pas à 100 %. 
 Si vous voulez avoir les 100 % aller demander a ceinture marron =)
@@ -111,5 +111,4 @@ void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk)
 }
 ```
 source : 
-
 https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
