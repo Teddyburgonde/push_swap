@@ -4,13 +4,6 @@
 
 En construction ! Derniere mise a jour mardi 02/04/2024 23h14
 
-🚧🚧🚧
-
-source : 
-
-https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
-
-
 ## **Etape 1** 
 
 - Faire les fonctions pa, pb ,sa ...
@@ -34,6 +27,7 @@ https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-t
 
 Si tu trie et tu vois afficher pa sa sa pb ... ce n'est pas tres visuel ,
 on prefere qu'on nous affiche 1 55 77 88 99
+Attention ne pas rendre cette fonction quand vous allez push !
 
 ```c
 void	ft_print_list(t_list *list)
@@ -49,8 +43,7 @@ void	ft_print_list(t_list *list)
 	
 }
 ```
-
-##  **Normalisation**
+## **Etape 3 : La Normalisation**
 
 - Imaginer que vous avez 100 chiffres a trier , dans ses chiffres il peut avoir 12000 , 5, 77777 etc...
 Si on dit a l'ordinateur de trier en etat cela prendrai beaucoup trop de temps...
@@ -82,7 +75,7 @@ void	ft_normalisation(t_list *a)
 }
 ```
 
-## **Algorithme papillion** 
+## **Etape 4 : Algorithme papillion** 
 
 En etat c'est algorithme vous permettra de valider votre projet mais pas à 100 %. 
 Si vous voulez avoir les 100 % aller demander a ceinture marron =)
@@ -117,4 +110,6 @@ void	ft_butterfly(t_list **stack_a, t_list **stack_b, int chunk)
 	}
 }
 ```
+source : 
 
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
